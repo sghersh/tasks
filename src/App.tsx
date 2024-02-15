@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./App.css";
+import tulips from "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLagr4Fm8QGRa7b4V6H-99sBNBznmzBUKiGg&usqp=CAU"
 
 function App(): JSX.Element {
     return (
@@ -23,7 +24,7 @@ function App(): JSX.Element {
                             <li>sushi</li>
                         </ul>
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLagr4Fm8QGRa7b4V6H-99sBNBznmzBUKiGg&usqp=CAU"
+                            src={tulips}
                             alt="A picture of some tulips in Scotland"
                         />
                         <div
