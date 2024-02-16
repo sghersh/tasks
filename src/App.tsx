@@ -23,7 +23,9 @@ function App(): JSX.Element {
                             <li>sushi</li>
                         </ul>
                         <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLagr4Fm8QGRa7b4V6H-99sBNBznmzBUKiGg&usqp=CAU"
+                            src={
+                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLagr4Fm8QGRa7b4V6H-99sBNBznmzBUKiGg&usqp=CAU"
+                            }
                             alt="A picture of some tulips in Scotland"
                         />
                         <div
