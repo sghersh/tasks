@@ -18,10 +18,10 @@ export function add3(first: number, second: number, third: number): number {
         total += first;
     }
     if (second > 0) {
-        total += first;
+        total += second;
     }
     if (third > 0) {
-        total += first;
+        total += third;
     }
     return total;
 }
@@ -41,7 +41,7 @@ export function shout(message: string): string {
  * mark. Do not use an `if` statement in solving this question.
  */
 export function isQuestion(message: string): boolean {
-    return message[-1] === "?";
+    return message[message.length - 1] === "?";
 }
 
 /**
