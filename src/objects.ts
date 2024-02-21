@@ -10,7 +10,16 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    return {};
+    return {
+        id: id,
+        name: name,
+        body: "",
+        type: type,
+        options: [],
+        expected: "",
+        points: 1,
+        published: false
+    };
 }
 
 /**
@@ -21,7 +30,9 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    return false;
+    let trimmedAnswer: string = answer.trim().toLowerCase();
+    let trimmedExpected: string = question.expected.trim().toLowerCase();
+    return trimmedAnswer === trimmedExpected;
 }
 
 /**
@@ -31,7 +42,11 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    return false;
+    if (question.type === "short_answer_question") {
+        return true;
+    } else {
+        return question.options.includes(answer);
+    }
 }
 
 /**
@@ -41,7 +56,7 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    return "";
+    return question.id.toString() + ": " + question.name.slice(0, 10);
 }
 
 /**
@@ -62,7 +77,21 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    return "";
+    if (question.type === "multiple_choice_question") {
+        let newBody: string[] = question.options.map((option, index) => {
+            return "- " + option;
+        });
+        return (
+            "# " +
+            question.name +
+            "\n" +
+            question.body +
+            "\n" +
+            newBody.join("\n")
+        );
+    } else {
+        return "# " + question.name + "\n" + question.body;
+    }
 }
 
 /**
@@ -70,7 +99,8 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    let newQ: Question = { ...question, name: newName };
+    return newQ;
 }
 
 /**
@@ -79,7 +109,8 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    return question;
+    let newQ: Question = { ...question, published: !question.published };
+    return newQ;
 }
 
 /**
@@ -88,8 +119,18 @@ export function publishQuestion(question: Question): Question {
  * over as "Copy of ORIGINAL NAME" (e.g., so "Question 1" would become "Copy of Question 1").
  * The `published` field should be reset to false.
  */
-export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    return oldQuestion;
+export function duplicateQuestion(
+    idNew: number,
+    oldQuestion: Question
+): Question {
+    let qName: string = oldQuestion.name;
+    let newQ: Question = {
+        ...oldQuestion,
+        id: idNew,
+        name: "Copy of " + qName,
+        published: false
+    };
+    return newQ;
 }
 
 /**
@@ -100,7 +141,11 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    let newQ: Question = {
+        ...question,
+        options: [...question.options, newOption]
+    };
+    return newQ;
 }
 
 /**
@@ -117,5 +162,16 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return contentQuestion;
+    let newQ: Question = {
+        ...contentQuestion,
+        points: points,
+        published: false,
+        id: id,
+        name: name
+    };
+    return newQ;
+}
+
+function opt(value: string, index: number, array: string[]): unknown {
+    throw new Error("Function not implemented.");
 }
