@@ -30,8 +30,8 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    let trimmedAnswer: string = answer.trim().toLowerCase();
-    let trimmedExpected: string = question.expected.trim().toLowerCase();
+    const trimmedAnswer: string = answer.trim().toLowerCase();
+    const trimmedExpected: string = question.expected.trim().toLowerCase();
     return trimmedAnswer === trimmedExpected;
 }
 
@@ -78,7 +78,7 @@ export function toShortForm(question: Question): string {
  */
 export function toMarkdown(question: Question): string {
     if (question.type === "multiple_choice_question") {
-        let newBody: string[] = question.options.map((option, index) => {
+        const newBody: string[] = question.options.map((option, index) => {
             return "- " + option;
         });
         return (
@@ -99,7 +99,7 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    let newQ: Question = { ...question, name: newName };
+    const newQ: Question = { ...question, name: newName };
     return newQ;
 }
 
@@ -109,7 +109,7 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    let newQ: Question = { ...question, published: !question.published };
+    const newQ: Question = { ...question, published: !question.published };
     return newQ;
 }
 
@@ -123,8 +123,8 @@ export function duplicateQuestion(
     idNew: number,
     oldQuestion: Question
 ): Question {
-    let qName: string = oldQuestion.name;
-    let newQ: Question = {
+    const qName: string = oldQuestion.name;
+    const newQ: Question = {
         ...oldQuestion,
         id: idNew,
         name: "Copy of " + qName,
@@ -141,7 +141,7 @@ export function duplicateQuestion(
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    let newQ: Question = {
+    const newQ: Question = {
         ...question,
         options: [...question.options, newOption]
     };
@@ -162,7 +162,7 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    let newQ: Question = {
+    const newQ: Question = {
         ...contentQuestion,
         points: points,
         published: false,
