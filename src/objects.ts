@@ -166,7 +166,8 @@ export function mergeQuestion(
         name: name
     };
 }
-
+/*
 function opt(value: string, index: number, array: string[]): unknown {
     throw new Error("Function not implemented.");
 }
+*/
