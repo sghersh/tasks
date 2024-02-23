@@ -78,7 +78,7 @@ export function toShortForm(question: Question): string {
  */
 export function toMarkdown(question: Question): string {
     if (question.type === "multiple_choice_question") {
-        const newBody: string[] = question.options.map((option, index) => {
+        const newBody: string[] = question.options.map((option) => {
             return "- " + option;
         });
         return (
