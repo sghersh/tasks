@@ -10,6 +10,7 @@ import { Button } from "react-bootstrap";
 export function d6(): number {
     return 1 + Math.floor(Math.random() * 6);
 }
+
 export function TwoDice(): JSX.Element {
     const [leftDie, setLeft] = useState<number>(2);
     const [rightDie, setRight] = useState<number>(4);
