@@ -28,7 +28,7 @@ export function TwoDice(): JSX.Element {
             ) : leftDie === rightDie && leftDie === 1 ? (
                 <div>You lose!</div>
             ) : (
-                "Continue"
+                <div>Continue</div>
             )}
         </div>
     );
